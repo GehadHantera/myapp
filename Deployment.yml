@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project
+spec:
+  selector:
+    matchLabels:
+      name: app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: app
+    spec:
+      containers:
+      - name: myapp
+        image: gehadhantera/myapp
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "8Mi"
+            cpu: "10m"
+        ports:
+        - containerPort: 80
